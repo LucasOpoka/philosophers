@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 15:12:34 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 18:50:51 by lucas            ###   ########.fr       */
+/*   Created: 2024/07/28 16:08:10 by lopoka            #+#    #+#             */
+/*   Updated: 2024/07/28 16:21:39 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
-int	main(int ac, char **av)
+size_t	get_time(void)
 {
-	t_philo	philo;
+	struct timeval	t;
 
-	ft_validate_av(ac, av, &philo);
-	ft_init(&philo);
-	ft_strt_thrds(&philo);
-	return (0);
+	if (gettimeofday(&t, NULL) == -1)
+		printf("Get time error\n");
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
