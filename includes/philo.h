@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:15:08 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 18:41:42 by lucas            ###   ########.fr       */
+/*   Updated: 2024/07/28 23:26:41 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ typedef struct s_philo	t_philo;
 
 typedef struct s_thrd
 {
-	pthread_t	t;
-	int			id;
-	int			eating;
-	int			no_ate;
-	size_t		lst_eat;
-	t_philo		*philo;
+	pthread_t		t;
+	int				id;
+	int				eating;
+	int				no_ate;
+	size_t			lst_eat;
+	pthread_mutex_t	eat_lock;	
+	pthread_mutex_t	aux_lock;
+	t_philo			*philo;
 }	t_thrd;
 
 typedef struct s_philo
@@ -39,8 +41,7 @@ typedef struct s_philo
 	int				no_eat;
 	t_thrd			*thrds;
 	pthread_mutex_t	*frks;
-	pthread_mutex_t	die_lock;
-	pthread_mutex_t	eat_lock;
+	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	prnt_lock;
 	int				dead;
 	size_t			strt;
@@ -52,10 +53,16 @@ void	ft_validate_av(int ac, char **av, t_philo *philo);
 // Init
 void	ft_init(t_philo *philo);
 
+// Routines
+void	*ft_rtne_philo(void *pt);
+
 //Strt thrds
 void	ft_strt_thrds(t_philo *philo);
 
 // Utils
+int		ft_casualties(t_thrd *thrd);
 size_t	get_time(void);
+void	ft_prnt(t_thrd *thrd, char *s);
+void	ft_wait(size_t ms);
 
 #endif
