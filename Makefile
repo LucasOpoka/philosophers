@@ -6,14 +6,14 @@
 #    By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 14:23:54 by lopoka            #+#    #+#              #
-#    Updated: 2024/07/28 22:57:59 by lopoka           ###   ########.fr        #
+#    Updated: 2024/07/29 12:35:01 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRCS_DIR = sources
-SRCS = main.c validate_av.c init.c strt_thrds.c utils.c rtne_philo.c
+SRCS = main.c validate_av.c init.c strt_thrds.c utils.c rtne_philo.c rtne_monit.c
 OBJ = $(addprefix $(SRCS_DIR)/,$(SRCS:.c=.o))
 
 CC = cc

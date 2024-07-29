@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 11:50:25 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 15:14:13 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:55:58 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -45,4 +45,6 @@ void	ft_validate_av(int ac, char **av, t_philo *philo)
 	philo->ms_slp = ft_ptoi(av[4], 1);
 	if (ac == 6)
 		philo->no_eat = ft_ptoi(av[5], 0);
+	else
+		philo->no_eat = -1;
 }

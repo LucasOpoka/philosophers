@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:15:08 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 23:26:41 by lucas            ###   ########.fr       */
+/*   Updated: 2024/07/29 12:34:34 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_init(t_philo *philo);
 
 // Routines
 void	*ft_rtne_philo(void *pt);
+void	*ft_rtne_monit(void *pt);
 
 //Strt thrds
 void	ft_strt_thrds(t_philo *philo);
