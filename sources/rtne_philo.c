@@ -6,17 +6,18 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 21:49:11 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 15:48:36 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/07/29 22:09:56 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
 void	ft_eat(t_thrd *thrd)
 {
-	if (thrd->philo->no == 1)
-		return (ft_wait(thrd->philo->ms_die));
 	pthread_mutex_lock(&thrd->philo->frks[thrd->id]);
 	ft_prnt(thrd, "has taken a fork");
+	if (thrd->philo->no == 1)
+		return (pthread_mutex_unlock(&thrd->philo->frks[thrd->id]),
+			ft_wait(thrd->philo->ms_die));
 	pthread_mutex_lock(&thrd->philo->frks[(thrd->id % thrd->philo->no) + 1]);
 	ft_prnt(thrd, "has taken a fork");
 	pthread_mutex_lock(&thrd->aux_lock);
@@ -52,7 +53,7 @@ void	*ft_rtne_philo(void *pt)
 
 	thrd = pt;
 	if (thrd->id % 2 != 0)
-		ft_wait(1);
+		ft_wait(2);
 	while (!ft_casualties(thrd))
 	{
 		ft_eat(thrd);
