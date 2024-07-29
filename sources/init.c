@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:16:25 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 23:48:26 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/07/29 13:26:07 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -64,5 +64,6 @@ void	ft_init(t_philo *philo)
 	ft_init_philocks(philo);
 	philo->dead = 0;
 	philo->strt = get_time();
+	philo->thrds[0].philo = philo;
 	ft_init_thrds(philo);
 }

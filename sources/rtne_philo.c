@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 21:49:11 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/28 23:48:59 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:48:36 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -24,8 +24,8 @@ void	ft_eat(t_thrd *thrd)
 	pthread_mutex_unlock(&thrd->aux_lock);
 	pthread_mutex_lock(&thrd->eat_lock);
 	ft_prnt(thrd, "is eating");
-	ft_wait(thrd->philo->ms_eat);
 	thrd->lst_eat = get_time();
+	ft_wait(thrd->philo->ms_eat);
 	thrd->no_ate++;
 	pthread_mutex_unlock(&thrd->eat_lock);
 	pthread_mutex_lock(&thrd->aux_lock);
@@ -52,7 +52,7 @@ void	*ft_rtne_philo(void *pt)
 
 	thrd = pt;
 	if (thrd->id % 2 != 0)
-		usleep(1);
+		ft_wait(1);
 	while (!ft_casualties(thrd))
 	{
 		ft_eat(thrd);

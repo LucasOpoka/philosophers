@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:15:08 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 12:34:34 by lucas            ###   ########.fr       */
+/*   Updated: 2024/07/29 14:09:08 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int		ft_casualties(t_thrd *thrd);
 size_t	get_time(void);
 void	ft_prnt(t_thrd *thrd, char *s);
 void	ft_wait(size_t ms);
+void	ft_end_all(t_philo *philo, char *s, int code);
 
 #endif
