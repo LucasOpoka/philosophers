@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 21:49:11 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 22:09:56 by lucas            ###   ########.fr       */
+/*   Updated: 2024/07/29 23:23:15 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -52,8 +52,8 @@ void	*ft_rtne_philo(void *pt)
 	t_thrd	*thrd;
 
 	thrd = pt;
-	if (thrd->id % 2 != 0)
-		ft_wait(2);
+	if (thrd->id % 2 == 0)
+		ft_wait(10);
 	while (!ft_casualties(thrd))
 	{
 		ft_eat(thrd);

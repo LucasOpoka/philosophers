@@ -6,7 +6,7 @@
 #    By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/28 14:23:54 by lopoka            #+#    #+#              #
-#    Updated: 2024/07/29 13:49:44 by lopoka           ###   ########.fr        #
+#    Updated: 2024/07/29 23:15:47 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = main.c validate_av.c init.c strt_thrds.c utils.c rtne_philo.c rtne_monit.
 OBJ = $(addprefix $(SRCS_DIR)/,$(SRCS:.c=.o))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=address,undefined -g 
+CFLAGS = -Wall -Wextra -Werror -pthread 
 
 all : ${NAME}
 
