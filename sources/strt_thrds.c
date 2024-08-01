@@ -6,35 +6,22 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:41:31 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 13:55:35 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/08/01 19:24:29 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
-int	ft_casualties(t_thrd *thrd)
-{
-	pthread_mutex_lock(&thrd->philo->dead_lock);
-	if (thrd->philo->dead)
-		return (pthread_mutex_unlock(&thrd->philo->dead_lock), 1);
-	return (pthread_mutex_unlock(&thrd->philo->dead_lock), 0);
-}
-
 void	ft_create_thrd(t_philo *philo, int i)
 {
-	void	*(*rtne)(void *);
-
-	if (i == 0)
-		rtne = &ft_rtne_monit;
-	else
-		rtne = &ft_rtne_philo;
-	if (pthread_create(&(philo->thrds[i].t), NULL, rtne, &philo->thrds[i]) != 0)
-		ft_end_all(philo, "Error whille creating threads", 1);
+	if (pthread_create(&(philo->thrds[i].t), NULL, &ft_routine,
+			&philo->thrds[i]) != 0)
+		ft_terminate(philo, "Error whille creating threads", 1);
 }
 
 void	ft_join_thrd(t_philo *philo, int i)
 {
 	if (pthread_join(philo->thrds[i].t, NULL) != 0)
-		ft_end_all(philo, "Error whille joining threads", 1);
+		ft_terminate(philo, "Error whille joining threads", 1);
 }
 
 void	ft_strt_thrds(t_philo *philo)
@@ -42,9 +29,15 @@ void	ft_strt_thrds(t_philo *philo)
 	int		i;
 
 	i = 0;
-	while (i <= philo->no)
+	while (i < philo->no)
 		ft_create_thrd(philo, i++);
+}
+
+void	ft_join_thrds(t_philo *philo)
+{
+	int		i;
+
 	i = 0;
-	while (i <= philo->no)
+	while (i < philo->no)
 		ft_join_thrd(philo, i++);
 }

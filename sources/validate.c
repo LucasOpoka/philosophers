@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_av.c                                      :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 11:50:25 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 11:55:58 by lucas            ###   ########.fr       */
+/*   Updated: 2024/08/01 13:41:20 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -35,7 +35,7 @@ int	ft_ptoi(const char *str, int no_zro)
 	return (res);
 }
 
-void	ft_validate_av(int ac, char **av, t_philo *philo)
+void	ft_validate(int ac, char **av, t_philo *philo)
 {
 	if (ac < 5 || 6 < ac)
 		ft_usage();

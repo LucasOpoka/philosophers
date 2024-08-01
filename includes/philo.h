@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:15:08 by lopoka            #+#    #+#             */
-/*   Updated: 2024/07/29 14:09:08 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/08/01 19:25:05 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ typedef struct s_thrd
 {
 	pthread_t		t;
 	int				id;
-	int				eating;
 	int				no_ate;
 	size_t			lst_eat;
-	pthread_mutex_t	eat_lock;	
-	pthread_mutex_t	aux_lock;
+	pthread_mutex_t	*l_frk;
+	pthread_mutex_t	*r_frk;
 	t_philo			*philo;
 }	t_thrd;
 
@@ -39,32 +38,39 @@ typedef struct s_philo
 	size_t			ms_eat;
 	size_t			ms_slp;
 	int				no_eat;
+	int				no_full;
 	t_thrd			*thrds;
 	pthread_mutex_t	*frks;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	prnt_lock;
-	int				dead;
+	pthread_mutex_t	lock;
+	int				dead_or_full;
 	size_t			strt;
 }	t_philo;
 
 // Validate
-void	ft_validate_av(int ac, char **av, t_philo *philo);
+void	ft_validate(int ac, char **av, t_philo *philo);
 
 // Init
 void	ft_init(t_philo *philo);
 
-// Routines
-void	*ft_rtne_philo(void *pt);
-void	*ft_rtne_monit(void *pt);
+// Routine
+void	*ft_routine(void *pt);
 
-//Strt thrds
+// Strt thrds
 void	ft_strt_thrds(t_philo *philo);
 
+// Stop thrds
+void	ft_stop_thrds(t_philo *philo);
+int		ft_time_to_stop(t_thrd *thrd);
+
+// Join thrds
+void	ft_join_thrds(t_philo *philo);
+
 // Utils
-int		ft_casualties(t_thrd *thrd);
+int		ft_prnt_lock(t_thrd *thrd, char *s);
 size_t	get_time(void);
-void	ft_prnt(t_thrd *thrd, char *s);
 void	ft_wait(size_t ms);
-void	ft_end_all(t_philo *philo, char *s, int code);
+
+// Terminate
+void	ft_terminate(t_philo *philo, char *s, int code);
 
 #endif
