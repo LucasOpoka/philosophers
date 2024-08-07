@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:15:08 by lopoka            #+#    #+#             */
-/*   Updated: 2024/08/01 19:25:05 by lucas            ###   ########.fr       */
+/*   Updated: 2024/08/07 14:50:03 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_join_thrds(t_philo *philo);
 // Utils
 int		ft_prnt_lock(t_thrd *thrd, char *s);
 size_t	get_time(void);
-void	ft_wait(size_t ms);
+int		ft_wait(size_t ms, t_philo *philo);
 
 // Terminate
 void	ft_terminate(t_philo *philo, char *s, int code);
