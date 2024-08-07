@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:47:23 by lopoka            #+#    #+#             */
-/*   Updated: 2024/08/07 14:50:22 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/08/07 19:50:28 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -41,7 +41,6 @@ void	ft_stop_thrds(t_philo *philo)
 	{
 		if (ft_stop_sub(philo))
 			break ;
-		usleep(1000);
 	}
 }
 
