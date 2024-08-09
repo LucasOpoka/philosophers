@@ -6,33 +6,28 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 15:16:25 by lopoka            #+#    #+#             */
-/*   Updated: 2024/08/07 14:27:47 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/08/09 18:17:24 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
-void	ft_err_exit(char *s)
-{
-	printf("%s\n", s);
-	exit (1);
-}
-
-void	ft_alloc(t_philo *philo)
+int	ft_alloc(t_philo *philo)
 {
 	philo->thrds = malloc(philo->no * sizeof(t_thrd));
 	if (!philo->thrds)
-		ft_err_exit("Failed to allocate threads\n");
+		return (printf("Failed to allocate threads\n"), 1);
 	philo->frks = malloc(philo->no * sizeof(pthread_mutex_t));
 	if (!philo->frks)
 	{
 		free(philo->thrds);
-		ft_err_exit("Failed to allocate mutexes\n");
+		return (printf("Failed to allocate mutexes\n"), 1);
 	}
+	return (0);
 }
 
 void	ft_init_philocks(t_philo *philo)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < philo->no)
@@ -42,7 +37,7 @@ void	ft_init_philocks(t_philo *philo)
 
 void	ft_init_thrds(t_philo *philo)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < philo->no)
@@ -56,12 +51,14 @@ void	ft_init_thrds(t_philo *philo)
 	}
 }
 
-void	ft_init(t_philo *philo)
+int	ft_init(t_philo *philo)
 {
-	ft_alloc(philo);
+	if (ft_alloc(philo))
+		return (1);
 	ft_init_philocks(philo);
 	philo->dead_or_full = 0;
 	philo->no_full = 0;
 	philo->strt = get_time();
 	ft_init_thrds(philo);
+	return (0);
 }

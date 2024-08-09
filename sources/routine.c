@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 21:49:11 by lopoka            #+#    #+#             */
-/*   Updated: 2024/08/07 13:31:34 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/08/09 17:34:58 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -36,7 +36,7 @@ void	ft_eat(t_thrd *thrd)
 	ft_prnt_lock(thrd, "is eating");
 	ft_wait(thrd->philo->ms_eat, thrd->philo);
 	pthread_mutex_lock(&thrd->philo->lock);
-	if (thrd->no_ate == thrd->philo->no_eat && thrd->philo->no_eat != -1)
+	if (thrd->no_ate == thrd->philo->no_eat)
 		thrd->philo->no_full++;
 	pthread_mutex_unlock(&thrd->philo->lock);
 	pthread_mutex_unlock(thrd->l_frk);

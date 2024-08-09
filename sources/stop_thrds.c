@@ -6,14 +6,14 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:47:23 by lopoka            #+#    #+#             */
-/*   Updated: 2024/08/07 19:50:28 by lucas            ###   ########.fr       */
+/*   Updated: 2024/08/09 17:37:24 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
 int	ft_stop_sub(t_philo *philo)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < philo->no)
@@ -23,10 +23,10 @@ int	ft_stop_sub(t_philo *philo)
 			|| philo->no_full == philo->no)
 		{
 			philo->dead_or_full = 1;
-			if (philo->no_eat != -1 && philo->no_full == philo->no)
-				printf("Every philosopher ate %d times\n", philo->no_eat);
+			if (philo->no_full == philo->no)
+				printf("Every philosopher ate %ld times\n", philo->no_eat);
 			else
-				printf("%zu %d died\n", get_time() - philo->strt, i + 1);
+				printf("%zu %ld died\n", get_time() - philo->strt, i + 1);
 			return (pthread_mutex_unlock(&philo->lock), 1);
 		}
 		i++;
